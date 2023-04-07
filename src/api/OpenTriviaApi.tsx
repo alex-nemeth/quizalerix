@@ -1,19 +1,19 @@
 class OpenTriviaApi {
-  baseUrl: string;
-  categoriesAction: string;
-  questionsAction: string;
+    private baseUrl: string;
+    private categoriesAction: string;
+    private questionsAction: string;
 
-  categoriesUrl: string;
-  questionsUrl: string;
+    public categoriesUrl: string;
+    public questionsUrl: string;
 
-  constructor() {
-    this.baseUrl = "https://opentdb.com";
-    this.categoriesAction = "api_category.php";
-    this.questionsAction = "api.php";
+    constructor() {
+        this.baseUrl = "https://opentdb.com";
+        this.categoriesAction = "api_category.php";
+        this.questionsAction = "api.php";
 
-    this.categoriesUrl = `${this.baseUrl}/${this.categoriesAction}`;
-    this.questionsUrl = `${this.baseUrl}/${this.questionsAction}/`;
-  }
+        this.categoriesUrl = `${this.baseUrl}/${this.categoriesAction}`;
+        this.questionsUrl = `${this.baseUrl}/${this.questionsAction}/`;
+    }
 }
 
 export default OpenTriviaApi;
