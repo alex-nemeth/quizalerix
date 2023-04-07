@@ -14,6 +14,29 @@ class OpenTriviaApi {
     this.categoriesUrl = `${this.baseUrl}/${this.categoriesAction}`;
     this.questionsUrl = `${this.baseUrl}/${this.questionsAction}/`;
   }
+
+  public getQuestionsUrl(questionsParameters: any): string {
+    return (
+      `${this.questionsUrl}` +
+      `?${this.addNumOfQuestionsParameter(
+        questionsParameters.numOfQuestions
+      )}` +
+      `${
+        questionsParameters.category === -1
+          ? ""
+          : this.addCategoryParameter(questionsParameters.category)
+      }` +
+      ``
+    );
+  }
+
+  private addNumOfQuestionsParameter(amount: number): string {
+    return `amount=${amount}`;
+  }
+
+  private addCategoryParameter(category: number): string {
+    return `&category=${category}`;
+  }
 }
 
 export default OpenTriviaApi;
