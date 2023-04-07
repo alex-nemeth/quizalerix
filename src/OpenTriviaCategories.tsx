@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import OpenTriviaApi from "./api/OpenTriviaApi";
 
-export default function ApiTest() {
+export default function OpenTriviaCategories() {
   let openTriviaApi = new OpenTriviaApi();
 
   const [categories, setCategories] = useState([{ id: "", name: "" }]);
