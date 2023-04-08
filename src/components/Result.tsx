@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 export default function Result(props: any) {
 	const [answers, setAnswers] = useState([{ correct: "", selected: "" }]);
 	const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
+	const [totalNumberOfAnswers] = useState(props.answers.length);
 
 	useEffect(() => {
 		setAnswers(props.answers);
@@ -26,7 +27,10 @@ export default function Result(props: any) {
 
 	return (
 		<div>
-			<p>Number of corect answers {numberOfCorrectAnswers}</p>
+			<p>
+				Number of corect answers {numberOfCorrectAnswers} out of{" "}
+				{totalNumberOfAnswers}
+			</p>
 		</div>
 	);
 }
