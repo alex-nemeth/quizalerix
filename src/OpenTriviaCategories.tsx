@@ -12,7 +12,7 @@ export default function OpenTriviaCategories() {
       .then((data) => setCategories(data.trivia_categories));
   }, []);
 
-  function createOptions() {
+  function createOptions(): JSX.Element[] {
     return categories.map((category) => {
       return <option value={category.id}>{category.name}</option>;
     });

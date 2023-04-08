@@ -1,21 +1,28 @@
 import { useState, useEffect } from "react";
 import OpenTriviaApi from "../api/OpenTriviaApi";
+import Question from "./Question";
 
 export default function Questions(props: any) {
   const openTriviaApi = new OpenTriviaApi();
 
-  const [questions, setQuestions] = useState();
+  const [state, setState] = useState({ questions: [], params: props.params });
 
   useEffect(() => {
-    fetch(openTriviaApi.getQuestionsUrl({ numOfQuestions: 5, category: 9 }))
+    fetch(openTriviaApi.constructQuestionsUrl(state.params))
       .then((response) => response.json())
-      .then((data) => setQuestions(data));
+      .then((data) => setState({ ...state, questions: data.results }));
 
-    console.log(
-      openTriviaApi.getQuestionsUrl({ numOfQuestions: 5, category: 9 })
-    );
-    console.log(questions);
+    console.log(openTriviaApi.constructQuestionsUrl(state.params));
+    console.log(state.questions);
   }, []);
 
-  return <div></div>;
+  function displayQuestions(): JSX.Element[] {
+    return state.questions.map((question) => (
+      <div>
+        <Question data={question} />
+      </div>
+    ));
+  }
+
+  return <div>{displayQuestions()};</div>;
 }

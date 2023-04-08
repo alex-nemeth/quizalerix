@@ -15,27 +15,30 @@ class OpenTriviaApi {
     this.questionsUrl = `${this.baseUrl}/${this.questionsAction}/`;
   }
 
-  public getQuestionsUrl(questionsParameters: any): string {
+  public constructQuestionsUrl(params: any): string {
     return (
       `${this.questionsUrl}` +
-      `?${this.addNumOfQuestionsParameter(
-        questionsParameters.numOfQuestions
-      )}` +
-      `${
-        questionsParameters.category === -1
-          ? ""
-          : this.addCategoryParameter(questionsParameters.category)
-      }` +
-      ``
+      `${this.addNumOfQuestionsParameter(params.numOfQuestions)}` +
+      `${this.addCategoryParameter(params.category)}` +
+      `${this.addDifficultyParameter(params.difficulty)}` +
+      `${this.addTypeParameter(params.type)}`
     );
   }
 
-  private addNumOfQuestionsParameter(amount: number): string {
-    return `amount=${amount}`;
+  private addNumOfQuestionsParameter(amount: string): string {
+    return `?amount=${amount}`;
   }
 
-  private addCategoryParameter(category: number): string {
-    return `&category=${category}`;
+  private addCategoryParameter(category: string): string {
+    return category === "" ? "" : `&category=${category}`;
+  }
+
+  private addDifficultyParameter(category: string): string {
+    return category === "" ? "" : `&difficulty=${category}`;
+  }
+
+  private addTypeParameter(type: string): string {
+    return type === "" ? "" : `&type=${type}`;
   }
 }
 
