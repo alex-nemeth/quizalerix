@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Selection from "./components/Selection";
+import Questions from "./components/Questions";
 
 export default function App() {
     const [page, setPage] = useState(0);
@@ -25,6 +26,7 @@ export default function App() {
             {page === 1 && (
                 <Selection nextPage={nextPage} loadParams={loadParams} />
             )}
+            {page === 2 && <Questions params={params} />}
         </div>
     );
 }
