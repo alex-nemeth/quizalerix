@@ -19,6 +19,10 @@ export default function App() {
         console.log(params);
     }
 
+    function sendAnswers() {
+        setPage((prevPage) => prevPage + 1);
+    }
+
     return (
         <div className="App">
             <Header />
@@ -26,7 +30,7 @@ export default function App() {
             {page === 1 && (
                 <Selection nextPage={nextPage} loadParams={loadParams} />
             )}
-            {page === 2 && <Questions params={params} />}
+            {page === 2 && <Questions submit={sendAnswers} params={params} />}
         </div>
     );
 }
