@@ -24,7 +24,11 @@ export default function OpenTriviaCategories(props: any) {
     }
 
     return (
-        <select name="category" onChange={props.handleChange}>
+        <select
+            name="category"
+            value={props.selected}
+            onChange={props.handleChange}
+        >
             <option value="" key={nanoid()}>
                 Any
             </option>
