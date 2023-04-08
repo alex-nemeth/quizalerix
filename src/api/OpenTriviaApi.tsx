@@ -1,10 +1,10 @@
 class OpenTriviaApi {
-  baseUrl: string;
-  categoriesAction: string;
-  questionsAction: string;
+  private baseUrl: string;
+  private categoriesAction: string;
+  private questionsAction: string;
 
-  categoriesUrl: string;
-  questionsUrl: string;
+  public categoriesUrl: string;
+  public questionsUrl: string;
 
   constructor() {
     this.baseUrl = "https://opentdb.com";
