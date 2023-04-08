@@ -25,6 +25,7 @@ export default function OpenTriviaCategories(props: any) {
 
     return (
         <select
+            className="selection--dropdown"
             name="category"
             value={props.selected}
             onChange={props.handleChange}
