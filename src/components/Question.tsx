@@ -1,16 +1,47 @@
 import { useState, useEffect } from "react";
 
 export default function Question(props: any) {
-  const [question] = useState(props.data);
+    const [question, setQuestion] = useState(props.data);
+    const [answers, setAnswers] = useState([""]);
 
-  return (
-    <div>
-      <p>{question.question}</p>
-      <p>{question.category}</p>
-      <p>{question.type}</p>
-      <p>{question.difficulty}</p>
-      <p>{question.correct_answer}</p>
-      <p>{question.incorrect_answers}</p>
-    </div>
-  );
+    useEffect(() => {
+        let answersArr = [];
+        answersArr.push(question.correct_answer);
+        question.incorrect_answers.map((answer: any) => {
+            answersArr.push(answer);
+        });
+        setAnswers(answersArr);
+    }, []);
+
+    function selectAnswer(e: any) {
+        const { name, value } = e.target;
+        props.select(name, value);
+    }
+
+    function renderOptions() {
+        return answers.map((answer: any) => {
+            return (
+                <>
+                    <button
+                        className={
+                            "selection--btn " +
+                            (question.question != answer && "selected")
+                        }
+                        name={question.question}
+                        value={answer}
+                        onClick={selectAnswer}
+                    >
+                        {answer}
+                    </button>
+                </>
+            );
+        });
+    }
+
+    return (
+        <>
+            {question.question}
+            {renderOptions()}
+        </>
+    );
 }
