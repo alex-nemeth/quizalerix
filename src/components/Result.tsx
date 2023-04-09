@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Result(props: any) {
     const [answers, setAnswers] = useState([{ correct: "", selected: "" }]);
@@ -33,13 +34,14 @@ export default function Result(props: any) {
                     {totalNumberOfAnswers}
                 </p>
             </div>
-
-            <button
-                onClick={() => props.navigate(1)}
-                className="selection--start-btn"
-            >
-                New quiz
-            </button>
+            <Link to="/">
+                <button
+                    onClick={() => props.navigate(1)}
+                    className="selection--start-btn"
+                >
+                    New quiz
+                </button>
+            </Link>
         </div>
     );
 }
