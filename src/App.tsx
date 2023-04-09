@@ -25,7 +25,8 @@ export default function App() {
         setPage((prevPage) => prevPage + 1);
         setAnswers(answersData);
         console.log(answers);
-        
+    }
+
     function navigateTo(pageIndex: number): void {
         setPage(pageIndex);
     }
@@ -39,9 +40,6 @@ export default function App() {
             )}
             {page === 2 && <Questions submit={sendAnswers} params={params} />}
             {page === 3 && (
-                <button onClick={() => console.log(answers)}>Test</button>
-            {page === 2 && <Questions params={params} />}
-            {page === 3 && (
                 <Result
                     navigate={navigateTo}
                     answers={[
@@ -50,6 +48,11 @@ export default function App() {
                         { correct: "False", selected: "False" },
                     ]}
                 />
+            )}
+            {page === 3 && (
+                <button onClick={() => console.log(answers)}>
+                    Log submitted
+                </button>
             )}
         </div>
     );
