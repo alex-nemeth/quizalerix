@@ -1,39 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import OpenTriviaApi from "../api/OpenTriviaApi";
 import Question from "./Question";
 
-export default function Questions(props: any) {
+interface QuestionsProp {
+    params: QuizSelectionModel;
+    onSubmit: (answers: QuestionAnswerModel[]) => void;
+}
+
+export default function Questions({ params, onSubmit }: QuestionsProp) {
     const openTriviaApi = new OpenTriviaApi();
 
-    const [state, setState] = useState({ questions: [], params: props.params });
-    const [selected, setSelected] = useState([{}]);
+    const [questions, setQuestions] = useState<QuestionModel[]>([]);
+    const [selected, setSelected] = useState<QuestionAnswerModel[]>([]);
 
     useEffect(() => {
-        fetch(openTriviaApi.constructQuestionsUrl(state.params))
+        fetch(openTriviaApi.constructQuestionsUrl(params))
             .then((response) => response.json())
-            .then((data) => setState({ ...state, questions: data.results }));
-        state.questions.map((question: any) => {
+            .then((data) =>
+                setQuestions(
+                    openTriviaApi.mapResponseToQuestionModel(data.results)
+                )
+            );
+
+        questions.map((question: QuestionModel) => {
             setSelected((prevSelected) => {
                 return { ...prevSelected, [question.question]: "" };
             });
         });
     }, []);
 
-    function selectOption(question: string, answer: string) {
-        setSelected((prevSelected) => {
-            return {
-                ...prevSelected,
-                [question]: answer,
-            };
-        });
+    function onSelected(question: string, answer: string) {
+        selected.push({
+            correctAnswer: question,
+            selectedAnswer: answer,
+        } as QuestionAnswerModel);
+
+        setSelected(selected);
         console.log(selected);
     }
 
-    function displayQuestions(): JSX.Element[] {
-        return state.questions.map((question) => (
+    function displayQuestions(): ReactNode[] {
+        return questions.map((question) => (
             <div>
-                <Question select={selectOption} data={question} />
+                <Question onSelected={onSelected} questionData={question} />
             </div>
         ));
     }
@@ -42,7 +52,7 @@ export default function Questions(props: any) {
         <div>
             {displayQuestions()}
             <Link to="/result">
-                <button onClick={() => props.submit(selected)}>Submit</button>
+                <button onClick={() => onSubmit(selected)}>Submit</button>
             </Link>
         </div>
     );

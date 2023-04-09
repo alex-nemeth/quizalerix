@@ -7,15 +7,20 @@ import Questions from "./components/Questions";
 import Result from "./components/Result";
 
 export default function App() {
-    const [params, setParams] = useState({});
-    const [answers, setAnswers] = useState();
+    const [params, setParams] = useState<QuizSelectionModel>({
+        category: "",
+        numOfQuestions: 5,
+        type: "",
+        difficulty: "",
+    });
+    const [answers, setAnswers] = useState<QuestionAnswerModel[]>([]);
 
-    function loadParams(parameters: any) {
+    function onLoadParams(parameters: QuizSelectionModel) {
         setParams(parameters);
         console.log(params);
     }
 
-    function sendAnswers(answersData: any) {
+    function onSubmit(answersData: QuestionAnswerModel[]) {
         setAnswers(answersData);
         console.log(answers);
     }
@@ -27,24 +32,15 @@ export default function App() {
                 <Route path="/" element={<Landing />} />
                 <Route
                     path="/selection"
-                    element={<Selection loadParams={loadParams} />}
+                    element={<Selection onLoadParams={onLoadParams} />}
                 />
                 <Route
                     path="/quiz"
-                    element={<Questions submit={sendAnswers} params={params} />}
+                    element={<Questions params={params} onSubmit={onSubmit} />}
                 />
                 <Route
                     path="/result"
-                    element={
-                        <Result
-                            testAnswers={answers}
-                            answers={[
-                                { correct: "True", selected: "False" },
-                                { correct: "Prasivec", selected: "Prasivec" },
-                                { correct: "False", selected: "False" },
-                            ]}
-                        />
-                    }
+                    element={<Result questionAnswers={answers} />}
                 />
             </Routes>
         </div>

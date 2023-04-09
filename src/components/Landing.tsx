@@ -1,7 +1,7 @@
 import react, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Landing(props: any) {
+export default function Landing() {
     return (
         <div className="landing--container">
             <div className="landing--text">
@@ -12,9 +12,7 @@ export default function Landing(props: any) {
                 </p>
             </div>
             <Link to="/selection">
-                <button className="landing--btn" onClick={props.nextPage}>
-                    Start
-                </button>
+                <button className="landing--btn">Start</button>
             </Link>
         </div>
     );

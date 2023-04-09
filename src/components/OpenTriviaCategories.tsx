@@ -1,39 +1,44 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import OpenTriviaApi from "../api/OpenTriviaApi";
 import { nanoid } from "nanoid";
 
-export default function OpenTriviaCategories(props: any) {
-  let openTriviaApi = new OpenTriviaApi();
+interface OpenTriviaCategoriesProps {
+    onChange: (event: any) => void;
+}
 
-  const [categories, setCategories] = useState([{ id: "", name: "" }]);
+export default function OpenTriviaCategories({
+    onChange,
+}: OpenTriviaCategoriesProps) {
+    let openTriviaApi = new OpenTriviaApi();
 
-  useEffect(() => {
-    fetch(openTriviaApi.categoriesUrl)
-      .then((response) => response.json())
-      .then((data) => setCategories(data.trivia_categories));
-  }, []);
+    const [categories, setCategories] = useState<CategoryModel[]>([]);
 
-  function createOptions(): JSX.Element[] {
-    return categories.map((category) => {
-      return (
-        <option value={category.id} key={nanoid()}>
-          {category.name}
-        </option>
-      );
-    });
-  }
+    useEffect(() => {
+        fetch(openTriviaApi.categoriesUrl)
+            .then((response) => response.json())
+            .then((data) => setCategories(data.trivia_categories));
+    }, []);
 
-  return (
-    <select
-      className="selection--dropdown"
-      name="category"
-      value={props.selected}
-      onChange={props.handleChange}
-    >
-      <option value="" key={nanoid()}>
-        Any
-      </option>
-      {createOptions()}
-    </select>
-  );
+    function createOptions(): ReactNode[] {
+        return categories.map((category: CategoryModel) => {
+            return (
+                <option value={category.id} key={nanoid()}>
+                    {category.name}
+                </option>
+            );
+        });
+    }
+
+    return (
+        <select
+            className="selection--dropdown"
+            name="category"
+            onChange={onChange}
+        >
+            <option value="" key={nanoid()}>
+                Any
+            </option>
+            {createOptions()}
+        </select>
+    );
 }

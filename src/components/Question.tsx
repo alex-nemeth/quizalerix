@@ -1,14 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
-export default function Question(props: any) {
-    const [question, setQuestion] = useState(props.data);
-    const [answers, setAnswers] = useState([""]);
+interface QuestionProp {
+    questionData: QuestionModel;
+    onSelected: (question: string, answer: string) => void;
+}
+
+export default function Question({ questionData, onSelected }: QuestionProp) {
+    const [question] = useState(questionData);
+    const [answers, setAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         let answersArr = [];
-        answersArr.push(question.correct_answer);
-        question.incorrect_answers.map((answer: any) => {
+        answersArr.push(question.correctAnswer);
+        question.incorrectAnswers.map((answer: string) => {
             answersArr.push(answer);
         });
         setAnswers(answersArr);
@@ -16,11 +21,11 @@ export default function Question(props: any) {
 
     function selectAnswer(e: any) {
         const { name, value } = e.target;
-        props.select(name, value);
+        onSelected(name, value);
     }
 
     function renderOptions() {
-        return answers.map((answer: any) => {
+        return answers.map((answer: string) => {
             return (
                 <>
                     <button
