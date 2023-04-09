@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import OpenTriviaApi from "../api/OpenTriviaApi";
 import Question from "./Question";
 
@@ -40,7 +41,9 @@ export default function Questions(props: any) {
     return (
         <div>
             {displayQuestions()}
-            <button onClick={() => props.submit(selected)}>Submit</button>
+            <Link to="/result">
+                <button onClick={() => props.submit(selected)}>Submit</button>
+            </Link>
         </div>
     );
 }

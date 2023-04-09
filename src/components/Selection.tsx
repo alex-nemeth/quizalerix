@@ -1,5 +1,6 @@
 import react, { useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
+import { Link } from "react-router-dom";
 
 export default function Selection(props: any) {
     const [state, setState] = useState({
@@ -133,12 +134,14 @@ export default function Selection(props: any) {
                     </button>
                 </div>
             </div>
-            <button
-                onClick={() => props.loadParams(state)}
-                className="selection--start-btn"
-            >
-                Start
-            </button>
+            <Link to="/quiz">
+                <button
+                    onClick={() => props.loadParams(state)}
+                    className="selection--start-btn"
+                >
+                    Start
+                </button>
+            </Link>
         </div>
     );
 }
