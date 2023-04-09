@@ -2,15 +2,19 @@ import react, { useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
 import { Link } from "react-router-dom";
 
-export default function Selection(props: any) {
-    const [state, setState] = useState({
+interface SelectionProps {
+    onLoadParams: (model: QuizSelectionModel) => void;
+}
+
+export default function Selection({ onLoadParams }: SelectionProps) {
+    const [state, setState] = useState<QuizSelectionModel>({
         category: "",
         numOfQuestions: 5,
         type: "",
         difficulty: "",
     });
 
-    function changeState(event: any) {
+    function onChange(event: any) {
         setState((prevState) => {
             const { name, value } = event.target;
             return {
@@ -25,10 +29,7 @@ export default function Selection(props: any) {
         <div className="selection--container">
             <div className="selection--wrapper">
                 <p className="selection--label">Category</p>
-                <OpenTriviaCategories
-                    handleChange={changeState}
-                    selected={state.category}
-                />
+                <OpenTriviaCategories onChange={onChange} />
             </div>
             <div className="selection--wrapper">
                 <p className="selection--label">Number of questions</p>
@@ -43,7 +44,7 @@ export default function Selection(props: any) {
                         max="50"
                         name="numOfQuestions"
                         value={state.numOfQuestions}
-                        onChange={changeState}
+                        onChange={onChange}
                     ></input>
                 </div>
             </div>
@@ -51,7 +52,7 @@ export default function Selection(props: any) {
                 <p className="selection--label">Type</p>
                 <div className="selection--type-buttons">
                     <button
-                        onClick={changeState}
+                        onClick={onChange}
                         name="type"
                         value=""
                         className={
@@ -62,7 +63,7 @@ export default function Selection(props: any) {
                         Any
                     </button>
                     <button
-                        onClick={changeState}
+                        onClick={onChange}
                         name="type"
                         value="multiple"
                         className={
@@ -73,7 +74,7 @@ export default function Selection(props: any) {
                         Multiple Choice
                     </button>
                     <button
-                        onClick={changeState}
+                        onClick={onChange}
                         name="type"
                         value="boolean"
                         className={
@@ -91,7 +92,7 @@ export default function Selection(props: any) {
                     <button
                         name="difficulty"
                         value=""
-                        onClick={changeState}
+                        onClick={onChange}
                         className={
                             "selection--dif-btn " +
                             (state.difficulty === "" && "selected")
@@ -102,7 +103,7 @@ export default function Selection(props: any) {
                     <button
                         name="difficulty"
                         value="easy"
-                        onClick={changeState}
+                        onClick={onChange}
                         className={
                             "selection--dif-btn " +
                             (state.difficulty === "easy" && "selected")
@@ -113,7 +114,7 @@ export default function Selection(props: any) {
                     <button
                         name="difficulty"
                         value="medium"
-                        onClick={changeState}
+                        onClick={onChange}
                         className={
                             "selection--dif-btn " +
                             (state.difficulty === "medium" && "selected")
@@ -124,7 +125,7 @@ export default function Selection(props: any) {
                     <button
                         name="difficulty"
                         value="hard"
-                        onClick={changeState}
+                        onClick={onChange}
                         className={
                             "selection--dif-btn " +
                             (state.difficulty === "hard" && "selected")
@@ -136,7 +137,7 @@ export default function Selection(props: any) {
             </div>
             <Link to="/quiz">
                 <button
-                    onClick={() => props.loadParams(state)}
+                    onClick={() => onLoadParams(state)}
                     className="selection--start-btn"
                 >
                     Start

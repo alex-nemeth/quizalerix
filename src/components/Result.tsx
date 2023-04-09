@@ -1,29 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function Result(props: any) {
-    const [answers, setAnswers] = useState([{ correct: "", selected: "" }]);
+interface ResultProps {
+    questionAnswers: QuestionAnswerModel[];
+}
+
+export default function Result({ questionAnswers }: ResultProps) {
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
-    const [totalNumberOfAnswers] = useState(props.answers.length);
+    const [totalNumberOfAnswers] = useState(questionAnswers.length);
 
     useEffect(() => {
-        setAnswers(props.answers);
-
         evaluateAnswers();
-    });
+    }, []);
 
     function evaluateAnswers(): void {
         let countCorrectAnswers: number = 0;
 
-        answers.forEach((answer) => {
-            if (isCorrect(answer.correct, answer.selected)) {
+        questionAnswers.forEach((answer) => {
+            if (isCorrect(answer)) {
                 setNumberOfCorrectAnswers(++countCorrectAnswers);
             }
         });
     }
 
-    function isCorrect(correctAnswer: string, selectedAnswer: string): boolean {
-        return correctAnswer === selectedAnswer;
+    function isCorrect(answer: QuestionAnswerModel): boolean {
+        return answer.correctAnswer === answer.selectedAnswer;
     }
 
     return (
@@ -34,13 +35,8 @@ export default function Result(props: any) {
                     {totalNumberOfAnswers}
                 </p>
             </div>
-            <Link to="/">
-                <button
-                    onClick={() => props.navigate(1)}
-                    className="selection--start-btn"
-                >
-                    New quiz
-                </button>
+            <Link to="/selection">
+                <button className="selection--start-btn">New quiz</button>
             </Link>
         </div>
     );
