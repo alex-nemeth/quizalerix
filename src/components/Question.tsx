@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export default function Question(props: any) {
     const [question, setQuestion] = useState(props.data);
     const [answers, setAnswers] = useState([""]);
-    const [selected, setSelected] = useState("default");
 
     useEffect(() => {
         let answersArr = [];
@@ -12,25 +11,28 @@ export default function Question(props: any) {
             answersArr.push(answer);
         });
         setAnswers(answersArr);
-        console.log(answers);
     }, []);
 
     function selectAnswer(e: any) {
-        setSelected(e.target.value);
+        const { name, value } = e.target;
+        props.select(name, value);
     }
 
     function renderOptions() {
         return answers.map((answer: any) => {
             return (
                 <>
-                    <p>{answer}</p>
-                    <input
-                        type="radio"
+                    <button
+                        className={
+                            "selection--btn " +
+                            (question.question != answer && "selected")
+                        }
                         name={question.question}
-                        checked={selected !== ""}
-                        onChange={selectAnswer}
                         value={answer}
-                    ></input>
+                        onClick={selectAnswer}
+                    >
+                        {answer}
+                    </button>
                 </>
             );
         });
@@ -43,9 +45,3 @@ export default function Question(props: any) {
         </>
     );
 }
-//  <p>{question.question}</p>
-//  <p>{question.category}</p>
-//  <p>{question.type}</p>
-//  <p>{question.difficulty}</p>
-//  <p>{question.correct_answer}</p>
-//  <p>{question.incorrect_answers}</p>

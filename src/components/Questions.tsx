@@ -12,17 +12,21 @@ export default function Questions(props: any) {
         fetch(openTriviaApi.constructQuestionsUrl(state.params))
             .then((response) => response.json())
             .then((data) => setState({ ...state, questions: data.results }));
-
-        console.log(openTriviaApi.constructQuestionsUrl(state.params));
-        console.log(state.questions);
+        state.questions.map((question: any) => {
+            setSelected((prevSelected) => {
+                return { ...prevSelected, [question.question]: "" };
+            });
+        });
     }, []);
 
-    function selectOption() {
+    function selectOption(question: string, answer: string) {
         setSelected((prevSelected) => {
             return {
                 ...prevSelected,
+                [question]: answer,
             };
         });
+        console.log(selected);
     }
 
     function displayQuestions(): JSX.Element[] {
@@ -36,7 +40,7 @@ export default function Questions(props: any) {
     return (
         <div>
             {displayQuestions()}
-            <button onClick={() => props.submit}>Submit</button>
+            <button onClick={() => props.submit(selected)}>Submit</button>
         </div>
     );
 }

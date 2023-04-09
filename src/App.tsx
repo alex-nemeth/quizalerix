@@ -7,6 +7,7 @@ import Questions from "./components/Questions";
 export default function App() {
     const [page, setPage] = useState(0);
     const [params, setParams] = useState({});
+    const [answers, setAnswers] = useState();
 
     function nextPage() {
         setPage((prevPage) => prevPage + 1);
@@ -19,8 +20,10 @@ export default function App() {
         console.log(params);
     }
 
-    function sendAnswers() {
+    function sendAnswers(answersData: any) {
         setPage((prevPage) => prevPage + 1);
+        setAnswers(answersData);
+        console.log(answers);
     }
 
     return (
@@ -31,6 +34,9 @@ export default function App() {
                 <Selection nextPage={nextPage} loadParams={loadParams} />
             )}
             {page === 2 && <Questions submit={sendAnswers} params={params} />}
+            {page === 3 && (
+                <button onClick={() => console.log(answers)}>Test</button>
+            )}
         </div>
     );
 }
