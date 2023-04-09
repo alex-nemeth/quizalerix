@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Selection from "./components/Selection";
 import Questions from "./components/Questions";
+import Result from "./components/Result";
 
 export default function App() {
     const [page, setPage] = useState(0);
@@ -24,6 +25,9 @@ export default function App() {
         setPage((prevPage) => prevPage + 1);
         setAnswers(answersData);
         console.log(answers);
+        
+    function navigateTo(pageIndex: number): void {
+        setPage(pageIndex);
     }
 
     return (
@@ -36,6 +40,16 @@ export default function App() {
             {page === 2 && <Questions submit={sendAnswers} params={params} />}
             {page === 3 && (
                 <button onClick={() => console.log(answers)}>Test</button>
+            {page === 2 && <Questions params={params} />}
+            {page === 3 && (
+                <Result
+                    navigate={navigateTo}
+                    answers={[
+                        { correct: "True", selected: "False" },
+                        { correct: "Prasivec", selected: "Prasivec" },
+                        { correct: "False", selected: "False" },
+                    ]}
+                />
             )}
         </div>
     );
