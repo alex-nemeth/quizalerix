@@ -35,9 +35,10 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
                         onClick={() =>
                             onSelected(question.questionNumber, answer)
                         }
-                    >
-                        {answer}
-                    </button>
+                        dangerouslySetInnerHTML={{
+                            __html: answer,
+                        }}
+                    ></button>
                 </>
             );
         });
@@ -45,7 +46,11 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
 
     return (
         <>
-            {question.questionNumber + ". " + question.question}
+            <p
+                dangerouslySetInnerHTML={{
+                    __html: question.questionNumber + ". " + question.question,
+                }}
+            ></p>
             {renderOptions()}
         </>
     );
