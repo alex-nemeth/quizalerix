@@ -1,0 +1,10 @@
+$theme-colors: (
+    "blue": #0f3460,
+    "purple": #533483,
+    "accent": #e94560,
+);
+
+$body-bg: #16213e;
+$body-color: white;
+
+@import "node_modules/bootstrap/scss/bootstrap";

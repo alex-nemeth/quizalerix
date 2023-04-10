@@ -65,7 +65,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
 
     function displayQuestions(): ReactNode[] {
         return questions.map((question) => (
-            <div>
+            <div className="d-flex flex-column gap-1">
                 <Question onSelected={onSelected} questionData={question} />
             </div>
         ));
@@ -74,9 +74,18 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
     function renderQuestions(): ReactNode {
         return (
             <>
-                {displayQuestions()}
+                <div className="d-flex flex-column gap-5">
+                    {displayQuestions()}
+                </div>
                 <Link to="/result">
-                    <button onClick={() => onSubmit(answers)}>Submit</button>
+                    <div className="row my-4">
+                        <button
+                            className="btn btn-purple"
+                            onClick={() => onSubmit(answers)}
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </Link>
             </>
         );
@@ -91,5 +100,9 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
         );
     }
 
-    return <div>{apiError ? renderError() : renderQuestions()}</div>;
+    return (
+        <div className="d=flex flex-column m-5">
+            {apiError ? renderError() : renderQuestions()}
+        </div>
+    );
 }

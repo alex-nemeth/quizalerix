@@ -23,22 +23,23 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
     }, []);
 
     function renderOptions() {
-        return answers.map((answer: string) => {
+        return answers.map((answer: string, answerNumber: number) => {
             return (
                 <>
-                    <button
-                        className={
-                            "selection--btn " +
-                            (question.question != answer && "selected")
-                        }
-                        name={nanoid()}
+                    <input
+                        type="radio"
+                        className="btn-check variant-dark"
+                        name={`"${question.questionNumber}"`}
+                        id={`${question.question}-${answerNumber}`}
                         onClick={() =>
                             onSelected(question.questionNumber, answer)
                         }
-                        dangerouslySetInnerHTML={{
-                            __html: answer,
-                        }}
-                    ></button>
+                    ></input>
+                    <label
+                        className="btn btn-outline-primary"
+                        htmlFor={`${question.question}-${answerNumber}`}
+                        dangerouslySetInnerHTML={{ __html: answer }}
+                    ></label>
                 </>
             );
         });
@@ -51,7 +52,9 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
                     __html: question.questionNumber + ". " + question.question,
                 }}
             ></p>
-            {renderOptions()}
+            <div className="btn-group gap-4" role="group">
+                {renderOptions()}
+            </div>
         </>
     );
 }

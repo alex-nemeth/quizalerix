@@ -1,6 +1,7 @@
 import react, { useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 interface SelectionProps {
     onLoadParams: (model: QuizSelectionModel) => void;
@@ -26,17 +27,17 @@ export default function Selection({ onLoadParams }: SelectionProps) {
     }
 
     return (
-        <div className="selection--container">
-            <div className="selection--wrapper">
+        <div className="container d-flex flex-column gap-5">
+            <div className="row">
                 <p className="selection--label">Category</p>
                 <OpenTriviaCategories
                     selected={state.category}
                     onChange={onChange}
                 />
             </div>
-            <div className="selection--wrapper">
+            <div className="row">
                 <p className="selection--label">Number of questions</p>
-                <div className="selection--range-container">
+                <div className="row">
                     <p className="selection--range-value">
                         {state.numOfQuestions}
                     </p>
@@ -51,100 +52,116 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                     ></input>
                 </div>
             </div>
-            <div className="selection--wrapper">
+            <div className="row">
                 <p className="selection--label">Type</p>
-                <div className="selection--type-buttons">
-                    <button
+                <div className="btn-group" role="group">
+                    <input
+                        type="radio"
                         onClick={onChange}
-                        name="type"
                         value=""
-                        className={
-                            "selection--btn " +
-                            (state.type === "" && "selected")
-                        }
-                    >
+                        name="type"
+                        id="type1"
+                        className="btn-check variant-dark"
+                        defaultChecked
+                    ></input>
+                    <label className="btn btn-outline-primary" htmlFor="type1">
                         Any
-                    </button>
-                    <button
+                    </label>
+                    <input
+                        type="radio"
                         onClick={onChange}
-                        name="type"
                         value="multiple"
-                        className={
-                            "selection--btn " +
-                            (state.type === "multiple" && "selected")
-                        }
-                    >
-                        Multiple Choice
-                    </button>
-                    <button
-                        onClick={onChange}
                         name="type"
+                        id="type2"
+                        className="btn-check"
+                    ></input>
+                    <label className="btn btn-outline-primary" htmlFor="type2">
+                        Multiple Choice
+                    </label>
+                    <input
+                        type="radio"
+                        onClick={onChange}
                         value="boolean"
-                        className={
-                            "selection--btn " +
-                            (state.type === "boolean" && "selected")
-                        }
-                    >
-                        True / False
-                    </button>
+                        name="type"
+                        id="type3"
+                        className="btn-check"
+                    ></input>
+                    <label className="btn btn-outline-primary" htmlFor="type3">
+                        True or False
+                    </label>
                 </div>
             </div>
-            <div className="selection--wrapper">
+            <div className="row">
                 <p className="selection--label">Difficulty</p>
-                <div className="selection--difficulty-buttons">
-                    <button
+                <div className="btn-group" role="group">
+                    <input
+                        type="radio"
+                        id="difficulty1"
                         name="difficulty"
                         value=""
                         onClick={onChange}
-                        className={
-                            "selection--dif-btn " +
-                            (state.difficulty === "" && "selected")
-                        }
+                        className="btn-check"
+                        defaultChecked
+                    ></input>
+                    <label
+                        className="btn btn-outline-primary"
+                        htmlFor="difficulty1"
                     >
                         Any
-                    </button>
-                    <button
+                    </label>
+                    <input
+                        type="radio"
+                        id="difficulty2"
                         name="difficulty"
                         value="easy"
                         onClick={onChange}
-                        className={
-                            "selection--dif-btn " +
-                            (state.difficulty === "easy" && "selected")
-                        }
+                        className="btn-check"
+                    ></input>
+                    <label
+                        className="btn btn-outline-primary"
+                        htmlFor="difficulty2"
                     >
                         Easy
-                    </button>
-                    <button
+                    </label>
+                    <input
+                        type="radio"
+                        id="difficulty3"
                         name="difficulty"
                         value="medium"
                         onClick={onChange}
-                        className={
-                            "selection--dif-btn " +
-                            (state.difficulty === "medium" && "selected")
-                        }
+                        className="btn-check"
+                    ></input>
+                    <label
+                        className="btn btn-outline-primary"
+                        htmlFor="difficulty3"
                     >
                         Medium
-                    </button>
-                    <button
+                    </label>
+                    <input
+                        type="radio"
+                        id="difficulty4"
                         name="difficulty"
                         value="hard"
                         onClick={onChange}
-                        className={
-                            "selection--dif-btn " +
-                            (state.difficulty === "hard" && "selected")
-                        }
+                        className="btn-check"
+                    ></input>
+                    <label
+                        className="btn btn-outline-primary"
+                        htmlFor="difficulty4"
                     >
                         Hard
-                    </button>
+                    </label>
                 </div>
             </div>
             <Link to="/quiz">
-                <button
-                    onClick={() => onLoadParams(state)}
-                    className="selection--start-btn"
-                >
-                    Start
-                </button>
+                <div className="row">
+                    <button
+                        onClick={() => onLoadParams(state)}
+                        className="btn btn-purple"
+                    >
+                        Start
+                    </button>
+                </div>
             </Link>
         </div>
     );
