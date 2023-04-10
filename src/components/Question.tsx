@@ -30,14 +30,14 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
                         type="radio"
                         className="btn-check variant-dark"
                         name={question.question}
-                        id={answer}
+                        id={`${question.question}-${answer}`}
                         onClick={() =>
                             onSelected(question.questionNumber, answer)
                         }
                     ></input>
                     <label
                         className="btn btn-outline-primary"
-                        htmlFor={answer}
+                        htmlFor={`${question.question}-${answer}`}
                         dangerouslySetInnerHTML={{ __html: answer }}
                     ></label>
                 </>
