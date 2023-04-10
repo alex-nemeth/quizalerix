@@ -16,8 +16,11 @@ class OpenTriviaApi {
     }
 
     public mapResponseToQuestionModel(response: any[]): QuestionModel[] {
+        let questionNumber = 1;
+
         return response.map((question) => {
-            return {
+            let questionModel = {
+                questionNumber: questionNumber,
                 category: question.category,
                 type: question.type,
                 difficulty: question.difficulty,
@@ -25,6 +28,10 @@ class OpenTriviaApi {
                 correctAnswer: question.correct_answer,
                 incorrectAnswers: question.incorrect_answers,
             } as QuestionModel;
+
+            questionNumber += 1;
+
+            return questionModel;
         });
     }
 
