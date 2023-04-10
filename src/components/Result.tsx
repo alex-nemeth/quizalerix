@@ -29,7 +29,7 @@ export default function Result({ questionAnswers }: ResultProps) {
 
     function displayAnswers(): ReactNode {
         return questionAnswers.map((answer) => (
-            <div className="border-top">
+            <div className="d-flex flex-column border-top">
                 <p>Answer for question {answer.questionNumber}</p>
                 <p
                     dangerouslySetInnerHTML={{
@@ -46,7 +46,7 @@ export default function Result({ questionAnswers }: ResultProps) {
     }
 
     return (
-        <div>
+        <div className="row">
             <div>
                 <h5 className="mb-4">
                     Number of corect answers {numberOfCorrectAnswers} out of{" "}
@@ -55,7 +55,9 @@ export default function Result({ questionAnswers }: ResultProps) {
                 {displayAnswers()}
             </div>
             <Link to="/selection">
-                <button className="selection--start-btn">New quiz</button>
+                <div className="row p-2">
+                    <button className="btn btn-purple">New quiz</button>
+                </div>
             </Link>
         </div>
     );
