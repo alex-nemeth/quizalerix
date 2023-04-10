@@ -12,7 +12,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
     const openTriviaApi = new OpenTriviaApi();
 
     const [questions, setQuestions] = useState<QuestionModel[]>([]);
-    const [selected, setSelected] = useState<QuestionAnswerModel[]>([]);
+    const [answers, setAnswers] = useState<QuestionAnswerModel[]>([]);
     const [apiError, setApiError] = useState<boolean>(false);
 
     useEffect(() => {
@@ -22,15 +22,12 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
                 if (data.response_code !== 0) {
                     setApiError(true);
                 } else {
-                    setQuestions(
-                        openTriviaApi.mapResponseToQuestionModel(data.results)
-                    );
+                    let mappedQuestions =
+                        openTriviaApi.mapResponseToQuestionModel(data.results);
 
-                    questions.map((question: QuestionModel) => {
-                        setSelected((prevSelected) => {
-                            return { ...prevSelected, [question.question]: "" };
-                        });
-                    });
+                    setQuestions(mappedQuestions);
+
+                    PrepareAnswersArray(mappedQuestions);
                 }
             })
             .catch((error) => {
@@ -38,14 +35,32 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
             });
     }, []);
 
-    function onSelected(question: string, answer: string) {
-        selected.push({
-            correctAnswer: question,
-            selectedAnswer: answer,
-        } as QuestionAnswerModel);
+    function PrepareAnswersArray(prepareFrom: QuestionModel[]) {
+        let answers: QuestionAnswerModel[] = [];
 
-        setSelected(selected);
-        console.log(selected);
+        prepareFrom.map((question: QuestionModel) => {
+            let answer = {
+                questionNumber: question.questionNumber,
+                correctAnswer: question.correctAnswer,
+                selectedAnswer: "",
+            } as QuestionAnswerModel;
+
+            answers.push(answer);
+        });
+
+        setAnswers(answers);
+    }
+
+    function onSelected(questionNumber: number, answer: string) {
+        let copyOfAnswers = answers.slice();
+        console.log(questionNumber);
+        let foundAnswer = copyOfAnswers.find(
+            (a) => a.questionNumber === questionNumber
+        );
+
+        foundAnswer!.selectedAnswer = answer;
+
+        setAnswers(copyOfAnswers);
     }
 
     function displayQuestions(): ReactNode[] {
@@ -61,7 +76,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
             <>
                 {displayQuestions()}
                 <Link to="/result">
-                    <button onClick={() => onSubmit(selected)}>Submit</button>
+                    <button onClick={() => onSubmit(answers)}>Submit</button>
                 </Link>
             </>
         );
