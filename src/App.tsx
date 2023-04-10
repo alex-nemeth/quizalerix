@@ -5,6 +5,9 @@ import Landing from "./components/Landing";
 import Selection from "./components/Selection";
 import Questions from "./components/Questions";
 import Result from "./components/Result";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
+import Container from "react-bootstrap/esm/Container";
 
 export default function App() {
     const [params, setParams] = useState<QuizSelectionModel>({
@@ -26,7 +29,7 @@ export default function App() {
     }
 
     return (
-        <div className="App">
+        <div className="d-flex flex-column align-items-center">
             <Header />
             <Routes>
                 <Route path="/" element={<Landing />} />
