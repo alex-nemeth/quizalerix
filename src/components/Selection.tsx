@@ -2,6 +2,7 @@ import react, { useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import QuizSelectionModel from "../models/QuizSelectionModel";
 
 interface SelectionProps {
     onLoadParams: (model: QuizSelectionModel) => void;

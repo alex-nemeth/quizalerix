@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { useState, useEffect, MouseEvent } from "react";
 import { shuffleArray } from "../utils/Utils";
+import QuestionModel from "../models/QuestionModel";
 
 interface QuestionProp {
     questionData: QuestionModel;

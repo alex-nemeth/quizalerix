@@ -1,4 +1,4 @@
-interface QuizSelectionModel {
+export default interface QuizSelectionModel {
     category: string;
     numOfQuestions: number;
     type: string;

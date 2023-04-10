@@ -1,4 +1,4 @@
-interface QuestionModel {
+export default interface QuestionModel {
     questionNumber: number;
     category: string;
     type: string;

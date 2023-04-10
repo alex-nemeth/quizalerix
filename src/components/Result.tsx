@@ -1,5 +1,6 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import QuestionAnswerModel from "../models/QuestionAnswerModel";
 
 interface ResultProps {
     questionAnswers: QuestionAnswerModel[];

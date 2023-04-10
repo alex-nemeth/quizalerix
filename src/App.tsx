@@ -8,6 +8,8 @@ import Result from "./components/Result";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 import Container from "react-bootstrap/esm/Container";
+import QuizSelectionModel from "./models/QuizSelectionModel";
+import QuestionAnswerModel from "./models/QuestionAnswerModel";
 
 export default function App() {
     const [params, setParams] = useState<QuizSelectionModel>({
