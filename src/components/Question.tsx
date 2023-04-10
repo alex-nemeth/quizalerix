@@ -26,19 +26,20 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
         return answers.map((answer: string) => {
             return (
                 <>
-                    <button
-                        className={
-                            "selection--btn " +
-                            (question.question != answer && "selected")
-                        }
-                        name={nanoid()}
+                    <input
+                        type="radio"
+                        className="btn-check variant-dark"
+                        name={question.question}
+                        id={answer}
                         onClick={() =>
                             onSelected(question.questionNumber, answer)
                         }
-                        dangerouslySetInnerHTML={{
-                            __html: answer,
-                        }}
-                    ></button>
+                    ></input>
+                    <label
+                        className="btn btn-outline-primary"
+                        htmlFor={answer}
+                        dangerouslySetInnerHTML={{ __html: answer }}
+                    ></label>
                 </>
             );
         });
@@ -51,7 +52,9 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
                     __html: question.questionNumber + ". " + question.question,
                 }}
             ></p>
-            {renderOptions()}
+            <div className="btn-group gap-4" role="group">
+                {renderOptions()}
+            </div>
         </>
     );
 }
