@@ -31,8 +31,16 @@ export default function Result({ questionAnswers }: ResultProps) {
         return questionAnswers.map((answer) => (
             <div className="border-top">
                 <p>Answer for question {answer.questionNumber}</p>
-                <p>Selected answer: {answer.selectedAnswer}</p>{" "}
-                <p> Correct answer: {answer.correctAnswer}</p>
+                <p
+                    dangerouslySetInnerHTML={{
+                        __html: "Selected answer:" + answer.selectedAnswer,
+                    }}
+                ></p>
+                <p
+                    dangerouslySetInnerHTML={{
+                        __html: "Correct answer:" + answer.correctAnswer,
+                    }}
+                ></p>
             </div>
         ));
     }
