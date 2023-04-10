@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import OpenTriviaApi from "../api/OpenTriviaApi";
 import { nanoid } from "nanoid";
+import CategoryModel from "../models/CategoryModel";
 
 interface OpenTriviaCategoriesProps {
     selected: string;
