@@ -1,3 +1,5 @@
+import QuestionModel from "../models/QuestionModel";
+
 class OpenTriviaApi {
     private baseUrl: string;
     private categoriesAction: string;
