@@ -23,21 +23,21 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
     }, []);
 
     function renderOptions() {
-        return answers.map((answer: string) => {
+        return answers.map((answer: string, answerNumber: number) => {
             return (
                 <>
                     <input
                         type="radio"
                         className="btn-check variant-dark"
-                        name={question.question}
-                        id={`${question.question}-${answer}`}
+                        name={`"${question.questionNumber}"`}
+                        id={`${question.question}-${answerNumber}`}
                         onClick={() =>
                             onSelected(question.questionNumber, answer)
                         }
                     ></input>
                     <label
                         className="btn btn-outline-primary"
-                        htmlFor={`${question.question}-${answer}`}
+                        htmlFor={`${question.question}-${answerNumber}`}
                         dangerouslySetInnerHTML={{ __html: answer }}
                     ></label>
                 </>
