@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 interface ResultProps {
@@ -27,13 +27,24 @@ export default function Result({ questionAnswers }: ResultProps) {
         return answer.correctAnswer === answer.selectedAnswer;
     }
 
+    function displayAnswers(): ReactNode {
+        return questionAnswers.map((answer) => (
+            <div className="border-top">
+                <p>Answer for question {answer.questionNumber}</p>
+                <p>Selected answer: {answer.selectedAnswer}</p>{" "}
+                <p> Correct answer: {answer.correctAnswer}</p>
+            </div>
+        ));
+    }
+
     return (
         <div>
             <div>
-                <p>
+                <h5 className="mb-4">
                     Number of corect answers {numberOfCorrectAnswers} out of{" "}
                     {totalNumberOfAnswers}
-                </p>
+                </h5>
+                {displayAnswers()}
             </div>
             <Link to="/selection">
                 <button className="selection--start-btn">New quiz</button>
