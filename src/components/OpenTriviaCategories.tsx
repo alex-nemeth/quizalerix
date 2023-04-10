@@ -3,10 +3,12 @@ import OpenTriviaApi from "../api/OpenTriviaApi";
 import { nanoid } from "nanoid";
 
 interface OpenTriviaCategoriesProps {
+    selected: string;
     onChange: (event: any) => void;
 }
 
 export default function OpenTriviaCategories({
+    selected,
     onChange,
 }: OpenTriviaCategoriesProps) {
     let openTriviaApi = new OpenTriviaApi();
@@ -33,6 +35,7 @@ export default function OpenTriviaCategories({
         <select
             className="selection--dropdown"
             name="category"
+            value={selected}
             onChange={onChange}
         >
             <option value="" key={nanoid()}>

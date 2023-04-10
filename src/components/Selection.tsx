@@ -29,7 +29,10 @@ export default function Selection({ onLoadParams }: SelectionProps) {
         <div className="selection--container">
             <div className="selection--wrapper">
                 <p className="selection--label">Category</p>
-                <OpenTriviaCategories onChange={onChange} />
+                <OpenTriviaCategories
+                    selected={state.category}
+                    onChange={onChange}
+                />
             </div>
             <div className="selection--wrapper">
                 <p className="selection--label">Number of questions</p>

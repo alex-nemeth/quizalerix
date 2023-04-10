@@ -13,21 +13,29 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
 
     const [questions, setQuestions] = useState<QuestionModel[]>([]);
     const [selected, setSelected] = useState<QuestionAnswerModel[]>([]);
+    const [apiError, setApiError] = useState<boolean>(false);
 
     useEffect(() => {
         fetch(openTriviaApi.constructQuestionsUrl(params))
             .then((response) => response.json())
-            .then((data) =>
-                setQuestions(
-                    openTriviaApi.mapResponseToQuestionModel(data.results)
-                )
-            );
+            .then((data) => {
+                if (data.response_code !== 0) {
+                    setApiError(true);
+                } else {
+                    setQuestions(
+                        openTriviaApi.mapResponseToQuestionModel(data.results)
+                    );
 
-        questions.map((question: QuestionModel) => {
-            setSelected((prevSelected) => {
-                return { ...prevSelected, [question.question]: "" };
+                    questions.map((question: QuestionModel) => {
+                        setSelected((prevSelected) => {
+                            return { ...prevSelected, [question.question]: "" };
+                        });
+                    });
+                }
+            })
+            .catch((error) => {
+                setApiError(true);
             });
-        });
     }, []);
 
     function onSelected(question: string, answer: string) {
@@ -48,12 +56,25 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
         ));
     }
 
-    return (
-        <div>
-            {displayQuestions()}
-            <Link to="/result">
-                <button onClick={() => onSubmit(selected)}>Submit</button>
-            </Link>
-        </div>
-    );
+    function renderQuestions(): ReactNode {
+        return (
+            <>
+                {displayQuestions()}
+                <Link to="/result">
+                    <button onClick={() => onSubmit(selected)}>Submit</button>
+                </Link>
+            </>
+        );
+    }
+
+    function renderError(): ReactNode {
+        return (
+            <>
+                <h1>Something went wrong.</h1>
+                <p>Unable to generate quiz questions. Please try again.</p>
+            </>
+        );
+    }
+
+    return <div>{apiError ? renderError() : renderQuestions()}</div>;
 }

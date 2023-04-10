@@ -46,8 +46,8 @@ class OpenTriviaApi {
         return category === "" ? "" : `&category=${category}`;
     }
 
-    private addDifficultyParameter(category: string): string {
-        return category === "" ? "" : `&difficulty=${category}`;
+    private addDifficultyParameter(difficulty: string): string {
+        return difficulty === "" ? "" : `&difficulty=${difficulty}`;
     }
 
     private addTypeParameter(type: string): string {
