@@ -34,16 +34,27 @@ export default function Result({ questionAnswers }: ResultProps) {
                 <p>Answer for question {answer.questionNumber}</p>
                 <p
                     dangerouslySetInnerHTML={{
-                        __html: "Selected answer:" + answer.selectedAnswer,
+                        __html: displaySelectedAnswer(answer.selectedAnswer),
                     }}
                 ></p>
                 <p
                     dangerouslySetInnerHTML={{
-                        __html: "Correct answer:" + answer.correctAnswer,
+                        __html: displayCorrectAnswer(answer),
                     }}
                 ></p>
             </div>
         ));
+    }
+
+    function displaySelectedAnswer(selectedAnswer: string): string {
+        return (
+            "Selected answer: " +
+            (selectedAnswer === "" ? "No answer was selected" : selectedAnswer)
+        );
+    }
+
+    function displayCorrectAnswer(answer: QuestionAnswerModel): string {
+        return "Correct answer: " + answer.correctAnswer;
     }
 
     return (
