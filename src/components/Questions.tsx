@@ -44,6 +44,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
         prepareFrom.map((question: QuestionModel) => {
             let answer = {
                 questionNumber: question.questionNumber,
+                question: question.question,
                 correctAnswer: question.correctAnswer,
                 selectedAnswer: "",
             } as QuestionAnswerModel;
