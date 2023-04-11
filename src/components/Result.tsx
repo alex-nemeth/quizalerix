@@ -32,7 +32,7 @@ export default function Result({ questionAnswers }: ResultProps) {
         return questionAnswers.map((answer) => (
             <div className="d-flex flex-column border-top">
                 <p>Answer for question {answer.questionNumber}</p>
-                <p>{answer.question}</p>
+                <p dangerouslySetInnerHTML={{ __html: answer.question }}></p>
                 <p
                     dangerouslySetInnerHTML={{
                         __html: displaySelectedAnswer(answer.selectedAnswer),
