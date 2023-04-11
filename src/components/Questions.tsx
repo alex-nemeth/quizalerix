@@ -5,6 +5,7 @@ import Question from "./Question";
 import QuestionModel from "../models/QuestionModel";
 import QuizSelectionModel from "../models/QuizSelectionModel";
 import QuestionAnswerModel from "../models/QuestionAnswerModel";
+import Loader from "./Loader";
 
 interface QuestionsProp {
     params: QuizSelectionModel;
@@ -17,6 +18,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
     const [questions, setQuestions] = useState<QuestionModel[]>([]);
     const [answers, setAnswers] = useState<QuestionAnswerModel[]>([]);
     const [apiError, setApiError] = useState<boolean>(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         fetch(openTriviaApi.constructQuestionsUrl(params))
@@ -35,7 +37,8 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
             })
             .catch((error) => {
                 setApiError(true);
-            });
+            })
+            .finally(() => setIsLoaded(true));
     }, []);
 
     function PrepareAnswersArray(prepareFrom: QuestionModel[]) {
@@ -104,9 +107,13 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
         );
     }
 
-    return (
-        <div className="d=flex flex-column m-5">
-            {apiError ? renderError() : renderQuestions()}
-        </div>
-    );
+    function render(): ReactNode {
+        if (isLoaded) {
+            return apiError ? renderError() : renderQuestions();
+        }
+
+        return <Loader size={6} />;
+    }
+
+    return <div className="d=flex flex-column m-5">{render()}</div>;
 }
