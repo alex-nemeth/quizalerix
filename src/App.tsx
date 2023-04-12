@@ -5,9 +5,9 @@ import Landing from "./components/Landing";
 import Selection from "./components/Selection";
 import Questions from "./components/Questions";
 import Result from "./components/Result";
+import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
-import Container from "react-bootstrap/esm/Container";
 import QuizSelectionModel from "./models/QuizSelectionModel";
 import QuestionAnswerModel from "./models/QuestionAnswerModel";
 
@@ -31,7 +31,7 @@ export default function App() {
     }
 
     return (
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center justify-content-center min-vh-100 p-3">
             <Header />
             <Routes>
                 <Route path="/" element={<Landing />} />
