@@ -72,7 +72,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
 
     function displayQuestions(): ReactNode[] {
         return questions.map((question) => (
-            <div className="d-flex flex-column gap-1">
+            <div className="d-flex flex-column mb-3">
                 <Question onSelected={onSelected} questionData={question} />
             </div>
         ));
