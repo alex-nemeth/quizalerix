@@ -7,7 +7,7 @@ export default function Landing() {
             <Link to="/selection">
                 <button
                     type="button"
-                    className="btn btn-outline-lightblue px-4 my-3"
+                    className="btn btn-lg btn-outline-lightblue px-4 my-3"
                 >
                     Create a quiz
                 </button>

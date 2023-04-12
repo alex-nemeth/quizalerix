@@ -8,4 +8,11 @@ $theme-colors: (
 $body-bg: #16213e;
 $body-color: white;
 
+$form-select-bg: #16213e;
+$form-select-color: white;
+$form-select-border-color: #4587e9;
+
+$form-check-label-color: white;
+$form-check-input-checked-color: white;
+
 @import "node_modules/bootstrap/scss/bootstrap";

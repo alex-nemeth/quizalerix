@@ -34,7 +34,7 @@ export default function OpenTriviaCategories({
 
     return (
         <select
-            className="selection--dropdown"
+            className="form-select bg-purple"
             name="category"
             value={selected}
             onChange={onChange}
