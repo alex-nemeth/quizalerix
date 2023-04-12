@@ -32,20 +32,34 @@ export default function App() {
 
     return (
         <div className="d-flex flex-column align-items-center justify-content-center min-vh-100 p-3">
-            <Header />
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route
                     path="/selection"
-                    element={<Selection onLoadParams={onLoadParams} />}
+                    element={
+                        <>
+                            <Header />
+                            <Selection onLoadParams={onLoadParams} />
+                        </>
+                    }
                 />
                 <Route
                     path="/quiz"
-                    element={<Questions params={params} onSubmit={onSubmit} />}
+                    element={
+                        <>
+                            <Header />
+                            <Questions params={params} onSubmit={onSubmit} />
+                        </>
+                    }
                 />
                 <Route
                     path="/result"
-                    element={<Result questionAnswers={answers} />}
+                    element={
+                        <>
+                            <Header />
+                            <Result questionAnswers={answers} />
+                        </>
+                    }
                 />
             </Routes>
         </div>
