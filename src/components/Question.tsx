@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import { useState, useEffect, MouseEvent } from "react";
 import { shuffleArray } from "../utils/Utils";
 import QuestionModel from "../models/QuestionModel";
+import QuestionWithNumber from "./QuestionWithNumber";
 
 interface QuestionProp {
     questionData: QuestionModel;
@@ -48,11 +49,11 @@ export default function Question({ questionData, onSelected }: QuestionProp) {
 
     return (
         <>
-            <p
-                dangerouslySetInnerHTML={{
-                    __html: question.questionNumber + ". " + question.question,
-                }}
-            ></p>
+            <QuestionWithNumber
+                questionNumber={question.questionNumber}
+                question={question.question}
+            />
+
             <div className="btn-group gap-4" role="group">
                 {renderOptions()}
             </div>
