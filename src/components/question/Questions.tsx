@@ -1,11 +1,11 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import OpenTriviaApi from "../api/OpenTriviaApi";
+import OpenTriviaApi from "../../api/OpenTriviaApi";
 import Question from "./Question";
-import QuestionModel from "../models/QuestionModel";
-import QuizSelectionModel from "../models/QuizSelectionModel";
-import QuestionAnswerModel from "../models/QuestionAnswerModel";
-import Loader from "./Loader";
+import QuestionModel from "../../models/QuestionModel";
+import QuizSelectionModel from "../../models/QuizSelectionModel";
+import QuestionAnswerModel from "../../models/QuestionAnswerModel";
+import Loader from "../Loader";
 
 interface QuestionsProp {
     params: QuizSelectionModel;
@@ -72,7 +72,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
 
     function displayQuestions(): ReactNode[] {
         return questions.map((question) => (
-            <div className="d-flex flex-column gap-1">
+            <div className="d-flex flex-column mb-3">
                 <Question onSelected={onSelected} questionData={question} />
             </div>
         ));
@@ -81,13 +81,13 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
     function renderQuestions(): ReactNode {
         return (
             <>
-                <div className="d-flex flex-column gap-5">
+                <div className="d-flex flex-column gap-5 mb-5">
                     {displayQuestions()}
                 </div>
                 <Link to="/result">
-                    <div className="row my-4">
+                    <div className="text-center">
                         <button
-                            className="btn btn-purple"
+                            className="btn btn-lg btn-outline-lightblue px-5"
                             onClick={() => onSubmit(answers)}
                         >
                             Submit

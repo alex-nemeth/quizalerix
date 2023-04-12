@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Selection from "./components/Selection";
-import Questions from "./components/Questions";
+import Questions from "./components/question/Questions";
 import Result from "./components/Result";
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
