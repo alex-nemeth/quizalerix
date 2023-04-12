@@ -35,7 +35,7 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                     <span>{state.numOfQuestions}</span>
                     <input
                         type="range"
-                        className=""
+                        className="form-range"
                         min="1"
                         max="50"
                         name="numOfQuestions"
