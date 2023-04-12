@@ -52,7 +52,7 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                 />
             </div>
             <div className="row">
-                <p className="selection--label">Type</p>
+                <p className="px-4">Type</p>
                 <div className="btn-group" role="group">
                     <input
                         type="radio"
@@ -100,7 +100,7 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                 </div>
             </div>
             <div className="row">
-                <p className="selection--label">Difficulty</p>
+                <p className="px-4">Difficulty</p>
                 <div className="btn-group" role="group">
                     <input
                         type="radio"
