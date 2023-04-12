@@ -85,9 +85,9 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
                     {displayQuestions()}
                 </div>
                 <Link to="/result">
-                    <div className="row my-4">
+                    <div className="text-center">
                         <button
-                            className="btn btn-purple"
+                            className="btn btn-lg btn-outline-lightblue px-5"
                             onClick={() => onSubmit(answers)}
                         >
                             Submit

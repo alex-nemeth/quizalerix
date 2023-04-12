@@ -161,18 +161,17 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                     </label>
                 </div>
             </div>
-            <div className="container p-3 text-center">
-                <div className="btn-group">
-                    <Link to="/quiz">
-                        <button
-                            onClick={() => onLoadParams(state)}
-                            className="btn btn-lg btn-outline-lightblue px-5"
-                        >
-                            Start Quiz
-                        </button>
-                    </Link>
+
+            <Link to="/quiz">
+                <div className="text-center">
+                    <button
+                        onClick={() => onLoadParams(state)}
+                        className="btn btn-lg btn-outline-lightblue px-5"
+                    >
+                        Start Quiz
+                    </button>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }
