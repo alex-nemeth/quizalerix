@@ -7,3 +7,7 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
+.start-quiz {
+    text-decoration: none !important;
+}

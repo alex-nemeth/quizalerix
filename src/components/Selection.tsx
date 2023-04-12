@@ -29,22 +29,13 @@ export default function Selection({ onLoadParams }: SelectionProps) {
 
     return (
         <div className="container d-flex flex-column gap-5">
-            <div className="row">
-                <p className="selection--label">Category</p>
-                <OpenTriviaCategories
-                    selected={state.category}
-                    onChange={onChange}
-                />
-            </div>
-            <div className="row">
-                <p className="selection--label">Number of questions</p>
-                <div className="row">
-                    <p className="selection--range-value">
-                        {state.numOfQuestions}
-                    </p>
+            <div className="container">
+                <p>Number of questions</p>
+                <div className="row d-flex">
+                    <span>{state.numOfQuestions}</span>
                     <input
                         type="range"
-                        className="selection--range"
+                        className=""
                         min="1"
                         max="50"
                         name="numOfQuestions"
@@ -53,8 +44,15 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                     ></input>
                 </div>
             </div>
+            <div className="row px-2">
+                <p className="selection--label">Category</p>
+                <OpenTriviaCategories
+                    selected={state.category}
+                    onChange={onChange}
+                />
+            </div>
             <div className="row">
-                <p className="selection--label">Type</p>
+                <p className="px-4">Type</p>
                 <div className="btn-group" role="group">
                     <input
                         type="radio"
@@ -65,7 +63,10 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         className="btn-check variant-dark"
                         defaultChecked
                     ></input>
-                    <label className="btn btn-outline-primary" htmlFor="type1">
+                    <label
+                        className="btn btn-outline-lightblue"
+                        htmlFor="type1"
+                    >
                         Any
                     </label>
                     <input
@@ -76,7 +77,10 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         id="type2"
                         className="btn-check"
                     ></input>
-                    <label className="btn btn-outline-primary" htmlFor="type2">
+                    <label
+                        className="btn btn-outline-lightblue"
+                        htmlFor="type2"
+                    >
                         Multiple Choice
                     </label>
                     <input
@@ -87,13 +91,16 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         id="type3"
                         className="btn-check"
                     ></input>
-                    <label className="btn btn-outline-primary" htmlFor="type3">
+                    <label
+                        className="btn btn-outline-lightblue"
+                        htmlFor="type3"
+                    >
                         True or False
                     </label>
                 </div>
             </div>
             <div className="row">
-                <p className="selection--label">Difficulty</p>
+                <p className="px-4">Difficulty</p>
                 <div className="btn-group" role="group">
                     <input
                         type="radio"
@@ -105,7 +112,7 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         defaultChecked
                     ></input>
                     <label
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-lightblue"
                         htmlFor="difficulty1"
                     >
                         Any
@@ -119,7 +126,7 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         className="btn-check"
                     ></input>
                     <label
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-lightblue"
                         htmlFor="difficulty2"
                     >
                         Easy
@@ -133,7 +140,7 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         className="btn-check"
                     ></input>
                     <label
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-lightblue"
                         htmlFor="difficulty3"
                     >
                         Medium
@@ -147,23 +154,25 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                         className="btn-check"
                     ></input>
                     <label
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-lightblue"
                         htmlFor="difficulty4"
                     >
                         Hard
                     </label>
                 </div>
             </div>
-            <Link to="/quiz">
-                <div className="row">
-                    <button
-                        onClick={() => onLoadParams(state)}
-                        className="btn btn-purple"
-                    >
-                        Start
-                    </button>
+            <div className="container p-3 text-center">
+                <div className="btn-group">
+                    <Link to="/quiz">
+                        <button
+                            onClick={() => onLoadParams(state)}
+                            className="btn btn-lg btn-outline-lightblue px-5"
+                        >
+                            Start Quiz
+                        </button>
+                    </Link>
                 </div>
-            </Link>
+            </div>
         </div>
     );
 }
