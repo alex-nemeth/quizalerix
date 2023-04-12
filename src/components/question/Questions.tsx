@@ -1,11 +1,11 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import OpenTriviaApi from "../api/OpenTriviaApi";
+import OpenTriviaApi from "../../api/OpenTriviaApi";
 import Question from "./Question";
-import QuestionModel from "../models/QuestionModel";
-import QuizSelectionModel from "../models/QuizSelectionModel";
-import QuestionAnswerModel from "../models/QuestionAnswerModel";
-import Loader from "./Loader";
+import QuestionModel from "../../models/QuestionModel";
+import QuizSelectionModel from "../../models/QuizSelectionModel";
+import QuestionAnswerModel from "../../models/QuestionAnswerModel";
+import Loader from "../Loader";
 
 interface QuestionsProp {
     params: QuizSelectionModel;
@@ -81,7 +81,7 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
     function renderQuestions(): ReactNode {
         return (
             <>
-                <div className="d-flex flex-column gap-5">
+                <div className="d-flex flex-column gap-5 mb-5">
                     {displayQuestions()}
                 </div>
                 <Link to="/result">

@@ -8,7 +8,7 @@ export default function QuestionWithNumber({
     question,
 }: QuestionWithNumber) {
     return (
-        <div className="d-flex">
+        <div className="d-flex mb-3">
             <div className="">
                 <span className="question-number-circle bg-accent d-flex justify-content-center align-items-center">
                     {questionNumber}
