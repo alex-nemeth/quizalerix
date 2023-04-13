@@ -9,14 +9,14 @@ export default function QuestionWithNumber({
 }: QuestionWithNumber) {
     return (
         <div className="d-flex mb-3">
-            <div className="">
+            <div>
                 <span className="question-number-circle bg-accent d-flex justify-content-center align-items-center">
                     {questionNumber}
                 </span>
             </div>
             <div className="mt-1">
                 <p
-                    className=""
+                    className="fw-bold"
                     dangerouslySetInnerHTML={{
                         __html: question,
                     }}
