@@ -71,7 +71,7 @@ export default function Result({ questionAnswers }: ResultProps) {
     }
 
     return (
-        <div>
+        <div className="d-flex flex-column m-4">
             <div>
                 <h4 className="mb-5 result--heading">
                     You answered {numberOfCorrectAnswers} out of{" "}
