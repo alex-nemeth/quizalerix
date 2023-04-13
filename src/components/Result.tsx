@@ -76,7 +76,10 @@ export default function Result({ questionAnswers }: ResultProps) {
                 <h4 className="mb-5 result--heading">
                     You answered {numberOfCorrectAnswers} out of{" "}
                     {totalNumberOfAnswers} questions correctly (
-                    {(numberOfCorrectAnswers / totalNumberOfAnswers) * 100}%)
+                    {Math.round(
+                        (numberOfCorrectAnswers / totalNumberOfAnswers) * 100
+                    )}
+                    %)
                 </h4>
                 {displayAnswers()}
             </div>
