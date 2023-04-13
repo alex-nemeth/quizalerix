@@ -115,5 +115,5 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
         return <Loader size={6} />;
     }
 
-    return <div className="d=flex flex-column m-5">{render()}</div>;
+    return <div className="d-flex flex-column m-4">{render()}</div>;
 }
