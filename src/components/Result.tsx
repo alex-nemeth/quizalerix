@@ -1,6 +1,7 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import QuestionAnswerModel from "../models/QuestionAnswerModel";
+import QuestionWithNumber from "./question/QuestionWithNumber";
 
 interface ResultProps {
     questionAnswers: QuestionAnswerModel[];
@@ -30,31 +31,30 @@ export default function Result({ questionAnswers }: ResultProps) {
 
     function displayAnswers(): ReactNode {
         return questionAnswers.map((answer) => (
-            <div className="d-flex flex-column my-3">
-                <div className="d-flex">
-                    <span className="question-number-circle bg-accent d-flex justify-content-center align-items-center">
-                        {answer.questionNumber}
-                    </span>
-                    <h5
-                        dangerouslySetInnerHTML={{ __html: answer.question }}
-                    ></h5>
+            <div className="">
+                <QuestionWithNumber
+                    questionNumber={answer.questionNumber}
+                    question={answer.question}
+                />
+                <div className="mx-5 mb-5">
+                    <p
+                        dangerouslySetInnerHTML={{
+                            __html: displayCorrectAnswer(answer),
+                        }}
+                    ></p>
+                    <p
+                        className={
+                            answer.correctAnswer === answer.selectedAnswer
+                                ? "correct--answer"
+                                : "wrong--answer"
+                        }
+                        dangerouslySetInnerHTML={{
+                            __html: displaySelectedAnswer(
+                                answer.selectedAnswer
+                            ),
+                        }}
+                    ></p>
                 </div>
-                <p
-                    className="mx-5"
-                    dangerouslySetInnerHTML={{
-                        __html: displayCorrectAnswer(answer),
-                    }}
-                ></p>
-                <p
-                    className={
-                        answer.correctAnswer === answer.selectedAnswer
-                            ? "mx-5 correct--answer"
-                            : "mx-5 wrong--answer"
-                    }
-                    dangerouslySetInnerHTML={{
-                        __html: displaySelectedAnswer(answer.selectedAnswer),
-                    }}
-                ></p>
             </div>
         ));
     }
@@ -71,7 +71,7 @@ export default function Result({ questionAnswers }: ResultProps) {
     }
 
     return (
-        <div className="row">
+        <div>
             <div>
                 <h4 className="mb-4 result--heading">
                     You answered {numberOfCorrectAnswers} out of{" "}
