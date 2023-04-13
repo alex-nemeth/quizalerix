@@ -4,8 +4,8 @@ import logo from "../images/quizalerix-logo.png";
 
 export default function Landing() {
     return (
-        <div className="d-flex flex-column align-items-center justify-content-center">
-            <img className="img-fluid" src={logo} alt="Quizalerix" />
+        <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+            <img className="img-fluid" src={logo} alt="Quizalerix logo" />
             <Link to="/selection">
                 <button
                     type="button"
