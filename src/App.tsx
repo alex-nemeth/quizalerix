@@ -31,7 +31,7 @@ export default function App() {
     }
 
     return (
-        <div className="d-flex flex-column align-items-center justify-content-center min-vh-100 p-3">
+        <div className="d-flex flex-column align-items-center">
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route
