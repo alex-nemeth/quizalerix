@@ -33,31 +33,42 @@ export default function Selection({ onLoadParams }: SelectionProps) {
     }
 
     return (
-        <div className="d-flex flex-column gap-5 m-4">
+        <div className="d-flex flex-column gap-5 m-4 container selection-max-width">
             <div>
-                {renderInputName("Number of questions")}
-                <div>
-                    <span>{state.numOfQuestions}</span>
-                    <input
-                        type="range"
-                        className="form-range"
-                        min="1"
-                        max="50"
-                        name="numOfQuestions"
-                        value={state.numOfQuestions}
-                        onChange={onChange}
-                    ></input>
+                {renderInputName("Select number of questions")}
+                <div className="row gx-1">
+                    <div className="col-sm-1 text-center">
+                        <label
+                            htmlFor="numOfQuestions-id"
+                            className="col-form-label"
+                        >
+                            {state.numOfQuestions}
+                        </label>
+                    </div>
+
+                    <div className="col mt-2">
+                        <input
+                            type="range"
+                            className="form-range"
+                            min="1"
+                            max="50"
+                            id="numOfQuestions-id"
+                            name="numOfQuestions"
+                            value={state.numOfQuestions}
+                            onChange={onChange}
+                        ></input>
+                    </div>
                 </div>
             </div>
             <div>
-                {renderInputName("Category")}
+                {renderInputName("Select category")}
                 <OpenTriviaCategories
                     selected={state.category}
                     onChange={onChange}
                 />
             </div>
             <div className="row">
-                {renderInputName("Number of questions")}
+                {renderInputName("Select type")}
                 <div className="btn-group" role="group">
                     <ButtonGroupButton
                         id="type1"
@@ -84,8 +95,8 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                 </div>
             </div>
             <div className="row">
-                {renderInputName("Difficulty")}
-                <div className="btn-group " role="group">
+                {renderInputName("Select difficulty")}
+                <div className="btn-group" role="group">
                     <ButtonGroupButton
                         id="difficulty1"
                         name="difficulty"

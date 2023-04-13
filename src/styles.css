@@ -12,6 +12,10 @@ body {
     text-decoration: none !important;
 }
 
+.selection-max-width {
+    max-width: 720px !important;
+}
+
 .question-number-circle {
     height: 2em !important;
     width: 2em !important;
