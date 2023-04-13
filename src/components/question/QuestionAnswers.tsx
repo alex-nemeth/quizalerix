@@ -21,7 +21,7 @@ export default function QuestionAnswers({
                         onClick={() => onSelected(questionNumber, answer)}
                     ></input>
                     <label
-                        className="btn btn-outline-lightblue"
+                        className="btn btn-outline-lightblue d-flex align-items-center justify-content-center"
                         htmlFor={`${questionNumber}-${answerNumber}`}
                         dangerouslySetInnerHTML={{ __html: answer }}
                     ></label>
