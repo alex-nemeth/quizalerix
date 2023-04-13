@@ -30,17 +30,29 @@ export default function Result({ questionAnswers }: ResultProps) {
 
     function displayAnswers(): ReactNode {
         return questionAnswers.map((answer) => (
-            <div className="d-flex flex-column border-top">
-                <p>Answer for question {answer.questionNumber}</p>
-                <p dangerouslySetInnerHTML={{ __html: answer.question }}></p>
+            <div className="d-flex flex-column my-3">
+                <div className="d-flex">
+                    <span className="question-number-circle bg-accent d-flex justify-content-center align-items-center">
+                        {answer.questionNumber}
+                    </span>
+                    <h5
+                        dangerouslySetInnerHTML={{ __html: answer.question }}
+                    ></h5>
+                </div>
                 <p
+                    className="mx-5"
                     dangerouslySetInnerHTML={{
-                        __html: displaySelectedAnswer(answer.selectedAnswer),
+                        __html: displayCorrectAnswer(answer),
                     }}
                 ></p>
                 <p
+                    className={
+                        answer.correctAnswer === answer.selectedAnswer
+                            ? "mx-5 correct--answer"
+                            : "mx-5 wrong--answer"
+                    }
                     dangerouslySetInnerHTML={{
-                        __html: displayCorrectAnswer(answer),
+                        __html: displaySelectedAnswer(answer.selectedAnswer),
                     }}
                 ></p>
             </div>
@@ -61,15 +73,18 @@ export default function Result({ questionAnswers }: ResultProps) {
     return (
         <div className="row">
             <div>
-                <h5 className="mb-4">
-                    Number of corect answers {numberOfCorrectAnswers} out of{" "}
-                    {totalNumberOfAnswers}
-                </h5>
+                <h4 className="mb-4 result--heading">
+                    You answered {numberOfCorrectAnswers} out of{" "}
+                    {totalNumberOfAnswers} questions correctly (
+                    {(numberOfCorrectAnswers / totalNumberOfAnswers) * 100}%)
+                </h4>
                 {displayAnswers()}
             </div>
             <Link to="/selection">
-                <div className="row p-2">
-                    <button className="btn btn-purple">New quiz</button>
+                <div className="text-center p-2">
+                    <button className="btn btn-outline-lightblue px-5">
+                        New quiz
+                    </button>
                 </div>
             </Link>
         </div>
