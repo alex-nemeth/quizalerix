@@ -1,8 +1,9 @@
-import react, { useState } from "react";
+import react, { ReactNode, useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import QuizSelectionModel from "../models/QuizSelectionModel";
+import ButtonGroupButton from "./inputs/ButtonGroupButton";
 
 interface SelectionProps {
     onLoadParams: (model: QuizSelectionModel) => void;
@@ -27,11 +28,15 @@ export default function Selection({ onLoadParams }: SelectionProps) {
         console.log(state);
     }
 
+    function renderInputName(name: string): ReactNode {
+        return <p className="fw-bold">{name}</p>;
+    }
+
     return (
-        <div className="container d-flex flex-column gap-5">
-            <div className="container">
-                <p>Number of questions</p>
-                <div className="row d-flex">
+        <div className="d-flex flex-column gap-5 m-4">
+            <div>
+                {renderInputName("Number of questions")}
+                <div>
                     <span>{state.numOfQuestions}</span>
                     <input
                         type="range"
@@ -44,124 +49,74 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                     ></input>
                 </div>
             </div>
-            <div className="row px-2">
-                <p className="selection--label">Category</p>
+            <div>
+                {renderInputName("Category")}
                 <OpenTriviaCategories
                     selected={state.category}
                     onChange={onChange}
                 />
             </div>
             <div className="row">
-                <p className="px-4">Type</p>
+                {renderInputName("Number of questions")}
                 <div className="btn-group" role="group">
-                    <input
-                        type="radio"
-                        onClick={onChange}
-                        value=""
-                        name="type"
+                    <ButtonGroupButton
                         id="type1"
-                        className="btn-check variant-dark"
-                        defaultChecked
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="type1"
-                    >
-                        Any
-                    </label>
-                    <input
-                        type="radio"
-                        onClick={onChange}
-                        value="multiple"
                         name="type"
+                        value=""
+                        onChange={onChange}
+                        buttonText="Any"
+                        isDefaultValue={true}
+                    />
+                    <ButtonGroupButton
                         id="type2"
-                        className="btn-check"
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="type2"
-                    >
-                        Multiple Choice
-                    </label>
-                    <input
-                        type="radio"
-                        onClick={onChange}
-                        value="boolean"
                         name="type"
+                        value="multiple"
+                        onChange={onChange}
+                        buttonText="Multiple Choice"
+                    />
+                    <ButtonGroupButton
                         id="type3"
-                        className="btn-check"
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="type3"
-                    >
-                        True or False
-                    </label>
+                        name="type"
+                        value="boolean"
+                        onChange={onChange}
+                        buttonText="True or False"
+                    />
                 </div>
             </div>
             <div className="row">
-                <p className="px-4">Difficulty</p>
-                <div className="btn-group" role="group">
-                    <input
-                        type="radio"
+                {renderInputName("Difficulty")}
+                <div className="btn-group " role="group">
+                    <ButtonGroupButton
                         id="difficulty1"
                         name="difficulty"
                         value=""
-                        onClick={onChange}
-                        className="btn-check"
-                        defaultChecked
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="difficulty1"
-                    >
-                        Any
-                    </label>
-                    <input
-                        type="radio"
+                        onChange={onChange}
+                        buttonText="Any"
+                        isDefaultValue={true}
+                    />
+                    <ButtonGroupButton
                         id="difficulty2"
                         name="difficulty"
                         value="easy"
-                        onClick={onChange}
-                        className="btn-check"
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="difficulty2"
-                    >
-                        Easy
-                    </label>
-                    <input
-                        type="radio"
+                        onChange={onChange}
+                        buttonText="Easy"
+                    />
+                    <ButtonGroupButton
                         id="difficulty3"
                         name="difficulty"
                         value="medium"
-                        onClick={onChange}
-                        className="btn-check"
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="difficulty3"
-                    >
-                        Medium
-                    </label>
-                    <input
-                        type="radio"
+                        onChange={onChange}
+                        buttonText="Medium"
+                    />
+                    <ButtonGroupButton
                         id="difficulty4"
                         name="difficulty"
                         value="hard"
-                        onClick={onChange}
-                        className="btn-check"
-                    ></input>
-                    <label
-                        className="btn btn-outline-lightblue"
-                        htmlFor="difficulty4"
-                    >
-                        Hard
-                    </label>
+                        onChange={onChange}
+                        buttonText="Hard"
+                    />
                 </div>
             </div>
-
             <Link to="/quiz">
                 <div className="text-center">
                     <button
