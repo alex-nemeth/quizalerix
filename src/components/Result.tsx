@@ -2,6 +2,7 @@ import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import QuestionAnswerModel from "../models/QuestionAnswerModel";
 import QuestionWithNumber from "./question/QuestionWithNumber";
+import ActionButton from "./inputs/ActionButton";
 
 interface ResultProps {
     questionAnswers: QuestionAnswerModel[];
@@ -84,11 +85,7 @@ export default function Result({ questionAnswers }: ResultProps) {
                 {displayAnswers()}
             </div>
             <Link to="/selection">
-                <div className="text-center p-2">
-                    <button className="btn btn-outline-lightblue px-5">
-                        New quiz
-                    </button>
-                </div>
+                <ActionButton text="New Quiz" />
             </Link>
         </div>
     );
