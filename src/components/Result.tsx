@@ -31,7 +31,7 @@ export default function Result({ questionAnswers }: ResultProps) {
 
     function displayAnswers(): ReactNode {
         return questionAnswers.map((answer) => (
-            <div className="">
+            <div>
                 <QuestionWithNumber
                     questionNumber={answer.questionNumber}
                     question={answer.question}
@@ -73,7 +73,7 @@ export default function Result({ questionAnswers }: ResultProps) {
     return (
         <div>
             <div>
-                <h4 className="mb-4 result--heading">
+                <h4 className="mb-5 result--heading">
                     You answered {numberOfCorrectAnswers} out of{" "}
                     {totalNumberOfAnswers} questions correctly (
                     {(numberOfCorrectAnswers / totalNumberOfAnswers) * 100}%)
