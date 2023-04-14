@@ -2,6 +2,7 @@ import { useState, useEffect, ReactNode } from "react";
 import QuestionAnswerModel from "../models/QuestionAnswerModel";
 import QuestionWithNumber from "./question/QuestionWithNumber";
 import ActionButton from "./inputs/ActionButton";
+import getResultColor from "../utils/getResultColor";
 
 interface ResultProps {
     questionAnswers: QuestionAnswerModel[];
@@ -10,6 +11,10 @@ interface ResultProps {
 export default function Result({ questionAnswers }: ResultProps) {
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
     const [totalNumberOfAnswers] = useState(questionAnswers.length);
+
+    const percentValue: number = Math.round(
+        (numberOfCorrectAnswers / totalNumberOfAnswers) * 100
+    );
 
     useEffect(() => {
         evaluateAnswers();
@@ -73,13 +78,12 @@ export default function Result({ questionAnswers }: ResultProps) {
     return (
         <div className="d-flex flex-column m-4">
             <div>
-                <h4 className="mb-5 result--heading">
+                <h4
+                    className="mb-5 result--heading"
+                    style={getResultColor(percentValue)}
+                >
                     You answered {numberOfCorrectAnswers} out of{" "}
-                    {totalNumberOfAnswers} questions correctly (
-                    {Math.round(
-                        (numberOfCorrectAnswers / totalNumberOfAnswers) * 100
-                    )}
-                    %)
+                    {totalNumberOfAnswers} questions correctly ({percentValue}%)
                 </h4>
                 {displayAnswers()}
             </div>
