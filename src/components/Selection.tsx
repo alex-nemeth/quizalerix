@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import QuizSelectionModel from "../models/QuizSelectionModel";
 import ButtonGroupButton from "./inputs/ButtonGroupButton";
+import ActionButton from "./inputs/ActionButton";
 
 interface SelectionProps {
     onLoadParams: (model: QuizSelectionModel) => void;
@@ -130,12 +131,10 @@ export default function Selection({ onLoadParams }: SelectionProps) {
             </div>
             <Link to="/quiz">
                 <div className="text-center">
-                    <button
-                        onClick={() => onLoadParams(state)}
-                        className="btn btn-lg btn-outline-lightblue px-5"
-                    >
-                        Start Quiz
-                    </button>
+                    <ActionButton
+                        text="Start Quiz"
+                        onPress={() => onLoadParams(state)}
+                    />
                 </div>
             </Link>
         </div>

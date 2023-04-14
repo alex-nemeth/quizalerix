@@ -6,6 +6,7 @@ import QuestionModel from "../../models/QuestionModel";
 import QuizSelectionModel from "../../models/QuizSelectionModel";
 import QuestionAnswerModel from "../../models/QuestionAnswerModel";
 import Loader from "../Loader";
+import ActionButton from "../inputs/ActionButton";
 
 interface QuestionsProp {
     params: QuizSelectionModel;
@@ -86,12 +87,10 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
                 </div>
                 <Link to="/result">
                     <div className="text-center">
-                        <button
-                            className="btn btn-lg btn-outline-lightblue px-5"
-                            onClick={() => onSubmit(answers)}
-                        >
-                            Submit
-                        </button>
+                        <ActionButton
+                            text="Submit"
+                            onPress={() => onSubmit(answers)}
+                        />
                     </div>
                 </Link>
             </>
