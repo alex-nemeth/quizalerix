@@ -1,7 +1,5 @@
-import react, { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import QuizSelectionModel from "../models/QuizSelectionModel";
 import ButtonGroupButton from "./inputs/ButtonGroupButton";
 import ActionButton from "./inputs/ActionButton";

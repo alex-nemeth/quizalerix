@@ -1,5 +1,4 @@
 import { useState, useEffect, ReactNode } from "react";
-import { Link } from "react-router-dom";
 import OpenTriviaApi from "../../api/OpenTriviaApi";
 import Question from "./Question";
 import QuestionModel from "../../models/QuestionModel";

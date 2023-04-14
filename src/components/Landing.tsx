@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../images/quizalerix-logo.png";
 import ActionButton from "./inputs/ActionButton";
 
