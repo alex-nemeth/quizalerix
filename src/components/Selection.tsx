@@ -1,9 +1,8 @@
-import react, { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import OpenTriviaCategories from "./OpenTriviaCategories";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import QuizSelectionModel from "../models/QuizSelectionModel";
 import ButtonGroupButton from "./inputs/ButtonGroupButton";
+import ActionButton from "./inputs/ActionButton";
 
 interface SelectionProps {
     onLoadParams: (model: QuizSelectionModel) => void;
@@ -128,16 +127,11 @@ export default function Selection({ onLoadParams }: SelectionProps) {
                     />
                 </div>
             </div>
-            <Link to="/quiz">
-                <div className="text-center">
-                    <button
-                        onClick={() => onLoadParams(state)}
-                        className="btn btn-lg btn-outline-lightblue px-5"
-                    >
-                        Start Quiz
-                    </button>
-                </div>
-            </Link>
+            <ActionButton
+                text="Start Quiz"
+                linkTo="/quiz"
+                onPress={() => onLoadParams(state)}
+            />
         </div>
     );
 }

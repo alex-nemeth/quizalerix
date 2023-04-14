@@ -1,11 +1,11 @@
 import { useState, useEffect, ReactNode } from "react";
-import { Link } from "react-router-dom";
 import OpenTriviaApi from "../../api/OpenTriviaApi";
 import Question from "./Question";
 import QuestionModel from "../../models/QuestionModel";
 import QuizSelectionModel from "../../models/QuizSelectionModel";
 import QuestionAnswerModel from "../../models/QuestionAnswerModel";
 import Loader from "../Loader";
+import ActionButton from "../inputs/ActionButton";
 
 interface QuestionsProp {
     params: QuizSelectionModel;
@@ -84,16 +84,11 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
                 <div className="d-flex flex-column gap-5 mb-5">
                     {displayQuestions()}
                 </div>
-                <Link to="/result">
-                    <div className="text-center">
-                        <button
-                            className="btn btn-lg btn-outline-lightblue px-5"
-                            onClick={() => onSubmit(answers)}
-                        >
-                            Submit
-                        </button>
-                    </div>
-                </Link>
+                <ActionButton
+                    text="Submit"
+                    linkTo="/result"
+                    onPress={() => onSubmit(answers)}
+                />
             </>
         );
     }
