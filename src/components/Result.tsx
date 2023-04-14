@@ -84,9 +84,7 @@ export default function Result({ questionAnswers }: ResultProps) {
                 </h4>
                 {displayAnswers()}
             </div>
-            <Link to="/selection">
-                <ActionButton text="New Quiz" />
-            </Link>
+            <ActionButton text="New Quiz" linkTo="/selection" />
         </div>
     );
 }

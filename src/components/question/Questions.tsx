@@ -85,14 +85,11 @@ export default function Questions({ params, onSubmit }: QuestionsProp) {
                 <div className="d-flex flex-column gap-5 mb-5">
                     {displayQuestions()}
                 </div>
-                <Link to="/result">
-                    <div className="text-center">
-                        <ActionButton
-                            text="Submit"
-                            onPress={() => onSubmit(answers)}
-                        />
-                    </div>
-                </Link>
+                <ActionButton
+                    text="Submit"
+                    linkTo="/result"
+                    onPress={() => onSubmit(answers)}
+                />
             </>
         );
     }
