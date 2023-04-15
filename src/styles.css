@@ -3,6 +3,20 @@ body {
     height: 100%;
 }
 
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #4587e97d;
+    border-radius: 10px;
+}
+
 #root {
     width: 100%;
     height: 100%;
